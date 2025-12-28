@@ -3,10 +3,12 @@ import { Book, Award, Home, MapPin, Users, Clock, LogOut, Filter, Calendar, Arro
 import PromoPage from './PromoPage';
 
 const initialCoaches = [
-  { id: 1, name: "Anjai", photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah", location: "Cibadak, Sukabumi", certifications: ["TESOL", "IELTS"], price: { private: 150000, public: 100000 }, availability: ["Sen 14:00-17:00", "Rab 14:00-17:00"], studentCount: 8, maxStudents: 15, bio: "10+ tahun pengalaman. Spesialisasi IELTS dan business English.", isAvailable: true },
-  { id: 2, name: "Fathar", photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Budi", location: "Palabuhanratu, Sukabumi", certifications: ["CELTA", "TOEFL"], price: { private: 120000, public: 80000 }, availability: ["Sel 15:00-18:00", "Kam 15:00-18:00"], studentCount: 12, maxStudents: 15, bio: "Fun learning untuk anak-anak dan remaja.", isAvailable: true },
-  { id: 3, name: "Indra", photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rizki", location: "Cibadak, Sukabumi", certifications: ["TOEFL", "Conversation"], price: { private: 110000, public: 75000 }, availability: ["Rab 10:00-13:00", "Jum 10:00-13:00"], studentCount: 6, maxStudents: 15, bio: "Fokus conversation dan speaking skills.", isAvailable: true },
-  { id: 4, name: "Raida", photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Diana", location: "Palabuhanratu, Sukabumi", certifications: ["CELTA", "Grammar"], price: { private: 140000, public: 95000 }, availability: ["Sel 14:00-17:00", "Kam 14:00-17:00"], studentCount: 10, maxStudents: 15, bio: "Spesialis grammar dan academic writing.", isAvailable: true }
+  { id: 1, name: "Raida", photo: "/Raida.jpeg", location: "Ciaul, Cisaat", certifications: ["TESOL", "IELTS"], price: { private: 150000, public: 100000 }, availability: ["Sen 14:00-17:00", "Rab 14:00-17:00"], studentCount: 8, maxStudents: 15, bio: "10+ tahun pengalaman. Spesialisasi IELTS dan business English.", isAvailable: true },
+  { id: 2, name: "Fathar", photo: "/Fathar.jpg", location: "Keramat, Cisaat", certifications: ["CELTA", "TOEFL"], price: { private: 120000, public: 80000 }, availability: ["Sel 15:00-18:00", "Kam 15:00-18:00"], studentCount: 12, maxStudents: 15, bio: "Fun learning untuk anak-anak dan remaja.", isAvailable: true },
+  { id: 3, name: "Indra", photo: "/Indra.jpeg", location: "Ciaul, Kadudampit", certifications: ["TOEFL", "Conversation"], price: { private: 110000, public: 75000 }, availability: ["Rab 10:00-13:00", "Jum 10:00-13:00"], studentCount: 6, maxStudents: 15, bio: "Fokus conversation dan speaking skills.", isAvailable: true },
+  { id: 4, name: "Nisa", photo: "/Nisa Joy.jpeg", location: "Keramat, Kadudampit", certifications: ["CELTA", "Grammar"], price: { private: 140000, public: 95000 }, availability: ["Sel 14:00-17:00", "Kam 14:00-17:00"], studentCount: 10, maxStudents: 15, bio: "Spesialis grammar dan academic writing.", isAvailable: true },
+  { id: 5, name: "Eri", photo: "/Eri.jpeg", location: "Kadudampit", certifications: ["Duolingo", "Business English"], price: { private: 160000, public: 110000 }, availability: ["Sen 10:00-13:00", "Rab 10:00-13:00"], studentCount: 9, maxStudents: 15, bio: "Business English dan professional communication.", isAvailable: true },
+  { id: 6, name: "Dimas", photo: "/Dimas.jpeg", location: "Cisaat, Ciaul, Keramat, Kadudampit", certifications: ["TESOL", "Conversation", "IELTS"], price: { private: 250000, public: 200000 }, availability: ["Jum 14:00-17:00", "Sab 10:00-13:00"], studentCount: 7, maxStudents: 15, bio: "Meningkatkan kemampuan berbicara dengan metode interaktif.", isAvailable: true }
 ];
 
 const sessions = [
@@ -135,7 +137,7 @@ function App() {
 
 
   if (page === 'coaches') {
-    const locs = ['all', 'Cibadak', 'Palabuhanratu'];
+    const locs = ['all', 'Ciaul', 'Keramat', 'Kadudampit', 'Cisaat'];
     const filtered = filterLoc === 'all' ? coaches.filter(c => c.isAvailable) : coaches.filter(c => c.isAvailable && c.location.includes(filterLoc));
     return (
       <div className="min-h-screen bg-gray-50">
