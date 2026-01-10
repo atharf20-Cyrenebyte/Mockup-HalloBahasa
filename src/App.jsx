@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Book, Award, Home, MapPin, Users, Clock, LogOut, Filter, Calendar, ArrowLeft, CheckCircle, XCircle, Trash2, Plus} from 'lucide-react';
 import PromoPage from './PromoPage';
+import AboutUs from './AboutUs';
 
 const initialCoaches = [
   { id: 1, name: "Raida", photo: "/Raida.jpeg", location: "Ciaul, Cisaat", certifications: ["TESOL", "IELTS"], price: { private: 150000, public: 100000 }, availability: ["Sen 14:00-17:00", "Rab 14:00-17:00"], studentCount: 8, maxStudents: 15, bio: "10+ tahun pengalaman. Spesialisasi IELTS dan business English.", isAvailable: true },
@@ -56,6 +57,78 @@ function App() {
     </header>
   );
 
+  // Di component Header/DashboardHeader
+const DashboardHeader = () => (
+  <header className="bg-white shadow-sm sticky top-0 z-50">
+    <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      {/* Logo */}
+      <div className="flex items-center gap-2">
+        <Book className="text-amber-600 w-8 h-8" />
+        <h1 className="text-2xl font-bold text-amber-600">Kampoeng Bahasa</h1>
+      </div>
+      
+      {/* Navigation */}
+      <nav className="hidden md:flex items-center gap-4">
+        <button 
+          onClick={() => setPage('landing')}
+          className="text-gray-700 hover:text-amber-600 font-semibold transition px-4 py-2 rounded-lg hover:bg-amber-50"
+        >
+          Home
+        </button>
+        
+        <button 
+          onClick={() => setPage('coaches')}
+          className="text-gray-700 hover:text-amber-600 font-semibold transition px-4 py-2 rounded-lg hover:bg-amber-50"
+        >
+          CoachHub
+        </button>
+        
+        <button 
+          onClick={() => setPage('promohub')}
+          className="text-gray-700 hover:text-amber-600 font-semibold transition px-4 py-2 rounded-lg hover:bg-amber-50"
+        >
+          PromoHub
+        </button>
+        
+        {/* About Us Button - Featured Style */}
+        <button 
+          onClick={() => setPage('about')}
+          className="text-gray-800 px-6 py-2 rounded-lg hover:bg-yellow-500 transition font-semibold shadow-md"
+          style={{ backgroundColor: '#FFFC00' }}
+        >
+          About Us
+        </button>
+      </nav>
+
+      {/* Right Side Actions */}
+      <div className="flex items-center gap-4">
+        {userRole ? (
+          <>
+            <span className="text-sm text-gray-600 hidden md:block">
+              {userRole === 'customer' && '👤 Customer'}
+              {userRole === 'coach' && '🎓 Coach'}
+              {userRole === 'admin' && '⚙️ Admin'}
+            </span>
+            <button 
+              onClick={() => { setUserRole(null); setPage('landing'); }} 
+              className="text-red-600 hover:text-red-700 flex items-center gap-2"
+            >
+              <LogOut className="w-5 h-5" />
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => setPage('login')}
+            className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition font-semibold"
+          >
+            Login
+          </button>
+        )}
+      </div>
+    </div>
+  </header>
+);
+
   const handleAddCoach = (e) => {
   e.preventDefault();
   const coach = {
@@ -83,12 +156,35 @@ function App() {
   if (page === 'landing') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-amber-100">
-        <header className="bg-white shadow-sm sticky top-0">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div className="flex items-center gap-2"><Book className="text-amber-600 w-8 h-8" /><h1 className="text-2xl font-bold text-amber-600">Hallo Bahasa</h1></div>
-            <button onClick={() => setPage('login')} className="text-gray-800 px-6 py-2 rounded-lg hover:bg-yellow-500 font-semibold" style={{ backgroundColor: '#FFFC00' }}>Login</button>
-          </div>
-        </header>
+<header className="bg-white shadow-sm sticky top-0 z-50">
+  <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+    {/* Logo */}
+    <div className="flex items-center gap-2">
+      <Book className="text-amber-600 w-8 h-8" />
+      <h1 className="text-2xl font-bold text-amber-600">Kampoeng Bahasa</h1>
+    </div>
+    
+    {/* Navigation Buttons */}
+    <div className="flex items-center gap-3">
+      {/* About Us - Button Kecil */}
+      <button 
+        onClick={() => setPage('about')}
+        className="text-gray-700 hover:text-amber-600 font-semibold transition px-4 py-2 rounded-lg hover:bg-amber-50 border border-amber-300"
+      >
+        About Us
+      </button>
+      
+      {/* Login - Button Besar */}
+      <button 
+        onClick={() => setPage('login')} 
+        className="text-gray-800 px-4 py-2 rounded-lg hover:bg-yellow-500 font-bold shadow-md transition transform hover:scale-105" 
+        style={{ backgroundColor: '#FFFC00' }}
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</header>
         <section className="container mx-auto px-4 py-20 text-center">
           <h2 className="text-5xl font-bold text-gray-800 mb-6">Belajar Bahasa Inggris dengan <span className="text-amber-600">Coach Profesional</span></h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Temukan coach bersertifikat di Sukabumi. Private atau Public class!</p>
@@ -254,6 +350,10 @@ function App() {
         </div>
       </div>
     );
+  }
+  
+  if (page === 'about') {
+  return <AboutUs />;
   }
 
   // Di bagian return App.jsx, tambahkan:
